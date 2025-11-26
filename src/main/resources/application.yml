@@ -1,0 +1,52 @@
+server:
+  port: 3006
+
+spring:
+  application:
+    name: notification-service
+  config:
+    import:
+      - 'optional:configserver:'
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_URL}
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  instance:
+    prefer-ip-address: false
+    hostname: localhost
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://code-factory.co.kr:3150/eureka/
+
+springdoc:
+  version: '1.0.0'
+  api-docs:
+    path: /v3/api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    operations-sorter: alpha
+    tags-sorter: alpha
+    path: /api-docs.html
+    disable-swagger-default-url: true
+    doc-expansion: list
+  paths-to-match:
+    - /**
+
+openapi:
+  service:
+    url: http://localhost:3000
