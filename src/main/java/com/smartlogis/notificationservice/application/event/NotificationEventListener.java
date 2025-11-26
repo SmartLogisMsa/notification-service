@@ -21,8 +21,12 @@ public class NotificationEventListener {
 	@Transactional
 	@RabbitListener(queues = "#{@deliveryCreatedQueue.name}")
 	public void handleNotifyDeliveryAssignedEvent(NotifyDeliveryAssignedEvent event) {
-		SendDeliveryDeadlineCommand command = toSendDeliveryDeadlineCommand(event);
-		autoNotificationService.sendDeliveryDeadline(command);
+		try {
+			SendDeliveryDeadlineCommand command = toSendDeliveryDeadlineCommand(event);
+			autoNotificationService.sendDeliveryDeadline(command);
+		} catch (Exception e) {
+			log.error("[NotifyDeliveryAssignedEvent] 처리 실패", e);
+		}
 	}
 
 	private SendDeliveryDeadlineCommand toSendDeliveryDeadlineCommand(NotifyDeliveryAssignedEvent event) {
