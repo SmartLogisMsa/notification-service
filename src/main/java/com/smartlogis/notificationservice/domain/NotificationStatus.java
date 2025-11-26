@@ -8,15 +8,15 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum MessageStatus {
+public enum NotificationStatus {
 	SUCCESS("SUCCESS"),
 	FAIL("FAIL");
 
 	private final String value;
 
-	public static MessageStatus fromString(String string) {
+	public static NotificationStatus fromString(String string) {
 		try {
-			return MessageStatus.valueOf(string.toUpperCase());
+			return NotificationStatus.valueOf(string.toUpperCase());
 		} catch (NullPointerException | IllegalArgumentException e) {
 			throw new NotificationLogException(NotificationLogMessageCode.INVALID_MESSAGE_STATUS, e);
 		}

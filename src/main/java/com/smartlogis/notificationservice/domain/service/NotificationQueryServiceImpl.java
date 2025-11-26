@@ -21,7 +21,7 @@ public class NotificationQueryServiceImpl implements NotificationQueryService {
 	private final NotificationLogRepository repository;
 
 	@Override
-	public NotificationLog getById(Long id) {
+	public NotificationLog getNotificationById(Long id) {
 		return repository.findById(id)
 			.orElseThrow(() -> new NotificationLogException(NotificationLogMessageCode.NOTIFICATION_NOT_FOUND));
 	}

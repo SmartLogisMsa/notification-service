@@ -31,7 +31,7 @@ public class NotificationLog extends AbstractEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	private MessageType type;
+	private NotificationType type;
 
 	@Column(nullable = false)
 	private String channelId;
@@ -41,14 +41,15 @@ public class NotificationLog extends AbstractEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private MessageStatus status;
+	private NotificationStatus status;
 
 	@Column
 	private String errorMessage;
 
 	public static NotificationLog create(NotificationCreate request) {
-		validateMessageType(request.type());
+		validateNotificationType(request.type());
 		validateChannelId(request.channelId());
+		validateNotificationStatus(request.status());
 
 		NotificationLog log = new NotificationLog();
 
@@ -65,15 +66,21 @@ public class NotificationLog extends AbstractEntity {
 		throw new NotificationLogException(NotificationLogMessageCode.DELETE_NOT_ALLOWED);
 	}
 
-	private static void validateMessageType(MessageType type) {
+	private static void validateNotificationType(NotificationType type) {
 		if (type == null) {
-			throw new IllegalArgumentException("메세지 타입(messageType)은 빈 값일 수 없습니다.");
+			throw new IllegalArgumentException("알림 타입(notificationType)은 비어 있을 수 없습니다.");
 		}
 	}
 
 	private static void validateChannelId(String channelId) {
 		if (channelId == null || channelId.isBlank()) {
-			throw new IllegalArgumentException("채널 ID(channelId)는 빈 값일 수 없습니다.");
+			throw new IllegalArgumentException("채널 ID(channelId)는 비어 있을 수 없습니다.");
+		}
+	}
+
+	private static void validateNotificationStatus(NotificationStatus status) {
+		if (status == null) {
+			throw new IllegalArgumentException("알림 상태(notificationStatus)는 비어 있을 수 없습니다.");
 		}
 	}
 }

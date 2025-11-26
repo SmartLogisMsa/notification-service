@@ -1,9 +1,9 @@
 package com.smartlogis.notificationservice.domain.dto;
 
-import com.smartlogis.notificationservice.domain.MessageStatus;
-import com.smartlogis.notificationservice.domain.MessageType;
+import com.smartlogis.notificationservice.domain.NotificationStatus;
+import com.smartlogis.notificationservice.domain.NotificationType;
 
 public record NotificationSearch(
-	MessageType type,
-	MessageStatus status
+	NotificationType type,
+	NotificationStatus status
 ) {}

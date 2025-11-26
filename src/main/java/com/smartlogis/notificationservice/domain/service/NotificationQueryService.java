@@ -7,6 +7,6 @@ import com.smartlogis.notificationservice.domain.NotificationLog;
 import com.smartlogis.notificationservice.domain.dto.NotificationSearch;
 
 public interface NotificationQueryService {
-	NotificationLog getById(Long id);
+	NotificationLog getNotificationById(Long id);
 	Page<NotificationLog> getNotificationLogs(NotificationSearch search, Pageable pageable);
 }

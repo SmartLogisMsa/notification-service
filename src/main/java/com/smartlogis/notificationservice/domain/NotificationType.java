@@ -8,14 +8,14 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum MessageType {
+public enum NotificationType {
 	CHANNEL("channel"), DIRECT_MESSAGE("direct_message");
 
 	private final String value;
 
-	public static MessageType fromString(String string) {
+	public static NotificationType fromString(String string) {
 		try {
-			return MessageType.valueOf(string.toUpperCase());
+			return NotificationType.valueOf(string.toUpperCase());
 		} catch (NullPointerException | IllegalArgumentException e) {
 			throw new NotificationLogException(NotificationLogMessageCode.INVALID_MESSAGE_TYPE, e);
 		}

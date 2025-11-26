@@ -52,15 +52,6 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-def querydslDir = "build/generated/sources/annotationProcessor/java/main"
-sourceSets {
-    main.java.srcDirs += querydslDir
-}
-
-clean {
-    delete querydslDir
-}
-
 tasks.named('test') {
     useJUnitPlatform()
 }
