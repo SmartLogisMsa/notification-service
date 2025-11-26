@@ -1,7 +1,7 @@
 package com.smartlogis.notificationservice.domain;
 
-import com.smartlogis.notificationservice.domain.exception.NotificationException;
-import com.smartlogis.notificationservice.domain.exception.NotificationMessageCode;
+import com.smartlogis.notificationservice.domain.exception.NotificationLogException;
+import com.smartlogis.notificationservice.domain.exception.NotificationLogMessageCode;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,7 @@ public enum MessageType {
 		try {
 			return MessageType.valueOf(string.toUpperCase());
 		} catch (NullPointerException | IllegalArgumentException e) {
-			throw new NotificationException(NotificationMessageCode.INVALID_MESSAGE_TYPE, e);
+			throw new NotificationLogException(NotificationLogMessageCode.INVALID_MESSAGE_TYPE, e);
 		}
 	}
 }

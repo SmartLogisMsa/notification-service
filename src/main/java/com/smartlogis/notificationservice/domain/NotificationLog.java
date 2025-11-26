@@ -2,8 +2,8 @@ package com.smartlogis.notificationservice.domain;
 
 import com.smartlogis.common.domain.AbstractEntity;
 import com.smartlogis.notificationservice.domain.dto.NotificationCreate;
-import com.smartlogis.notificationservice.domain.exception.NotificationException;
-import com.smartlogis.notificationservice.domain.exception.NotificationMessageCode;
+import com.smartlogis.notificationservice.domain.exception.NotificationLogException;
+import com.smartlogis.notificationservice.domain.exception.NotificationLogMessageCode;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -62,7 +62,7 @@ public class NotificationLog extends AbstractEntity {
 	}
 
 	public void delete() {
-		throw new NotificationException(NotificationMessageCode.DELETE_NOT_ALLOWED);
+		throw new NotificationLogException(NotificationLogMessageCode.DELETE_NOT_ALLOWED);
 	}
 
 	private static void validateMessageType(MessageType type) {
