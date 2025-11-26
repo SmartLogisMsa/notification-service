@@ -6,7 +6,8 @@ import org.springframework.data.repository.Repository;
 
 import com.smartlogis.notificationservice.domain.NotificationLog;
 
-public interface NotificationLogRepository extends Repository<NotificationLog, Long>, NotificationRepositoryCustom {
+public interface NotificationLogRepository
+	extends Repository<NotificationLog, Long>, NotificationLogRepositoryCustom {
 	NotificationLog save(NotificationLog notificationLog);
 	Optional<NotificationLog> findById(Long id);
 }

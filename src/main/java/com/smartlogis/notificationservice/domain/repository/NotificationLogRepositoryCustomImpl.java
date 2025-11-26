@@ -18,7 +18,7 @@ import com.smartlogis.notificationservice.domain.dto.NotificationSearch;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class NotificationRepositoryCustomImpl implements NotificationRepositoryCustom {
+public class NotificationLogRepositoryCustomImpl implements NotificationLogRepositoryCustom {
 
 	private final JPAQueryFactory queryFactory;
 
