@@ -32,6 +32,9 @@ eureka:
     service-url:
       defaultZone: http://code-factory.co.kr:3150/eureka/
 
+slack:
+  token: ${SLACK_USER_TOKEN}
+
 springdoc:
   version: '1.0.0'
   api-docs:
