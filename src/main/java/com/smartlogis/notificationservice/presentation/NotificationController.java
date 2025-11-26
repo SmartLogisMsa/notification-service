@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smartlogis.common.presentation.ApiResponse;
 import com.smartlogis.common.presentation.dto.PageRequest;
 import com.smartlogis.common.presentation.dto.PageResponse;
-import com.smartlogis.notificationservice.application.NotificationService;
+import com.smartlogis.notificationservice.application.service.NotificationService;
 import com.smartlogis.notificationservice.presentation.dto.NotificationLogResponse;
 import com.smartlogis.notificationservice.presentation.dto.NotificationLogSearchRequest;
 import com.smartlogis.notificationservice.presentation.dto.NotificationSendRequest;

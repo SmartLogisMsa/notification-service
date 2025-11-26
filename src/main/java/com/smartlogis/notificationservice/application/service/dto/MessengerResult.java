@@ -1,4 +1,4 @@
-package com.smartlogis.notificationservice.application.dto;
+package com.smartlogis.notificationservice.application.service.dto;
 
 import com.smartlogis.notificationservice.domain.NotificationStatus;
 

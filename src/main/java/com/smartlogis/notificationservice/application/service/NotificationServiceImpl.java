@@ -1,4 +1,4 @@
-package com.smartlogis.notificationservice.application;
+package com.smartlogis.notificationservice.application.service;
 
 import java.util.List;
 
@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.smartlogis.common.presentation.dto.PageRequest;
 import com.smartlogis.common.presentation.dto.PageResponse;
-import com.smartlogis.notificationservice.application.dto.MessengerResult;
+import com.smartlogis.notificationservice.application.service.dto.MessengerResult;
+import com.smartlogis.notificationservice.application.service.dto.NotificationMapper;
 import com.smartlogis.notificationservice.domain.NotificationLog;
 import com.smartlogis.notificationservice.domain.NotificationStatus;
 import com.smartlogis.notificationservice.domain.NotificationType;

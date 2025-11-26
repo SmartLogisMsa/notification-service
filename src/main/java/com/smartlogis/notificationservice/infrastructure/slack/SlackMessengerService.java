@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.smartlogis.notificationservice.application.MessengerService;
-import com.smartlogis.notificationservice.application.dto.MessengerResult;
+import com.smartlogis.notificationservice.application.service.MessengerService;
+import com.smartlogis.notificationservice.application.service.dto.MessengerResult;
 import com.smartlogis.notificationservice.infrastructure.slack.exception.SlackException;
 import com.smartlogis.notificationservice.infrastructure.slack.exception.SlackMessageCode;
 

@@ -1,8 +1,8 @@
-package com.smartlogis.notificationservice.application;
+package com.smartlogis.notificationservice.application.service;
 
 import java.util.List;
 
-import com.smartlogis.notificationservice.application.dto.MessengerResult;
+import com.smartlogis.notificationservice.application.service.dto.MessengerResult;
 
 public interface MessengerService {
 	MessengerResult openDirectMessage(List<String> slackIds);

@@ -1,4 +1,4 @@
-package com.smartlogis.notificationservice.infrastructure.config;
+package com.smartlogis.notificationservice.infrastructure.slack;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

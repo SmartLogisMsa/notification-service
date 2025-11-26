@@ -1,4 +1,4 @@
-package com.smartlogis.notificationservice.application;
+package com.smartlogis.notificationservice.application.service.dto;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

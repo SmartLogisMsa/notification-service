@@ -1,4 +1,4 @@
-package com.smartlogis.notificationservice.application;
+package com.smartlogis.notificationservice.application.service;
 
 import java.util.List;
 

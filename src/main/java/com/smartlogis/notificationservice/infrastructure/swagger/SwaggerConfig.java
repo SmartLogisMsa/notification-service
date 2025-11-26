@@ -1,4 +1,4 @@
-package com.smartlogis.notificationservice.infrastructure.config;
+package com.smartlogis.notificationservice.infrastructure.swagger;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
