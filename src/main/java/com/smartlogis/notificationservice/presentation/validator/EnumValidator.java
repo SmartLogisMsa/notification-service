@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.smartlogis.aiservice.presentation.annotation.EnumValid;
+import com.smartlogis.notificationservice.presentation.annotation.EnumValid;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

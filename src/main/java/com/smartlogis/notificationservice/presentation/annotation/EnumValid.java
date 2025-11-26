@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.smartlogis.aiservice.presentation.validator.EnumValidator;
+import com.smartlogis.notificationservice.presentation.validator.EnumValidator;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
