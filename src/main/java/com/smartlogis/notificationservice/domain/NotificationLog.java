@@ -1,6 +1,7 @@
 package com.smartlogis.notificationservice.domain;
 
 import com.smartlogis.common.domain.AbstractEntity;
+import com.smartlogis.notificationservice.domain.dto.NotificationCreate;
 import com.smartlogis.notificationservice.domain.exception.NotificationException;
 import com.smartlogis.notificationservice.domain.exception.NotificationMessageCode;
 
@@ -38,19 +39,24 @@ public class NotificationLog extends AbstractEntity {
 	@Column(columnDefinition = "TEXT")
 	private String message;
 
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private MessageStatus status;
+
 	@Column
 	private String errorMessage;
 
-	public static NotificationLog create(MessageType type, String channelId, String message, String errorMessage) {
-		validateMessageType(type);
-		validateChannelId(channelId);
+	public static NotificationLog create(NotificationCreate request) {
+		validateMessageType(request.type());
+		validateChannelId(request.channelId());
 
 		NotificationLog log = new NotificationLog();
 
-		log.type = type;
-		log.channelId = channelId;
-		log.message = message;
-		log.errorMessage = errorMessage;
+		log.type = request.type();
+		log.channelId = request.channelId();
+		log.message = request.message();
+		log.status = request.status();
+		log.errorMessage = request.errorMessage();
 
 		return log;
 	}
