@@ -2,15 +2,17 @@ package com.smartlogis.notificationservice.infrastructure.feignclient;
 
 import org.springframework.stereotype.Component;
 
-import com.smartlogis.common.presentation.ApiResponse;
 import com.smartlogis.notificationservice.application.service.AiClientService;
 import com.smartlogis.notificationservice.infrastructure.feignclient.dto.AiGenerateFeignResponse;
+import com.smartlogis.notificationservice.infrastructure.feignclient.dto.ClientResponse;
 import com.smartlogis.notificationservice.infrastructure.feignclient.dto.DeliveryDeadlineFeignRequest;
 import com.smartlogis.notificationservice.infrastructure.feignclient.exception.FeignException;
 import com.smartlogis.notificationservice.infrastructure.feignclient.exception.FeignMessageCode;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class AiClientServiceImpl implements AiClientService {
@@ -20,19 +22,18 @@ public class AiClientServiceImpl implements AiClientService {
 	@Override
 	public String generateDeliveryDeadline(DeliveryDeadlineFeignRequest request) {
 		try {
-			ApiResponse<AiGenerateFeignResponse> response = aiClient
-				.generateDeliveryDeadline(request)
-				.getBody();
+			ClientResponse<AiGenerateFeignResponse> response = aiClient
+				.generateDeliveryDeadline(request);
 
 			if (response == null) {
 				throw new FeignException(FeignMessageCode.INTERNAL_SERVER_ERROR, "AI 서버 응답이 null입니다.");
 			}
 
-			if (response.getData() == null) {
+			if (response.data() == null) {
 				throw new FeignException(FeignMessageCode.INTERNAL_SERVER_ERROR, "AI 서버 응답 데이터가 없습니다.");
 			}
 
-			return response.getData().response();
+			return response.data().response();
 		} catch (Exception e) {
 			throw new FeignException(FeignMessageCode.INTERNAL_SERVER_ERROR, e.getMessage());
 		}

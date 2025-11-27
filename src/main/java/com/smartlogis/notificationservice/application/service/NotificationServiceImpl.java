@@ -56,6 +56,7 @@ public class NotificationServiceImpl implements NotificationService {
 				NotificationLogCreate.of(
 					NotificationType.DIRECT_MESSAGE,
 					channelId,
+					slackIds,
 					message,
 					channel.status(),
 					channel.errorMessage()
@@ -68,6 +69,7 @@ public class NotificationServiceImpl implements NotificationService {
 				NotificationLogCreate.of(
 					NotificationType.DIRECT_MESSAGE,
 					channelId,
+					slackIds,
 					message,
 					result.status(),
 					result.errorMessage()

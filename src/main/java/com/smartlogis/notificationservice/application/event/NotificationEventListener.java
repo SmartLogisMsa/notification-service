@@ -2,7 +2,6 @@ package com.smartlogis.notificationservice.application.event;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.smartlogis.notificationservice.application.event.dto.NotifyDeliveryAssignedEvent;
 import com.smartlogis.notificationservice.application.service.AutoNotificationService;
@@ -18,10 +17,10 @@ public class NotificationEventListener {
 
 	private final AutoNotificationService autoNotificationService;
 
-	@Transactional
-	@RabbitListener(queues = "#{@deliveryCreatedQueue.name}")
+	@RabbitListener(queues = "${rabbit.bindings.delivery-created.queue}")
 	public void handleNotifyDeliveryAssignedEvent(NotifyDeliveryAssignedEvent event) {
 		try {
+			log.info("Handling notify delivery assigned event.");
 			SendDeliveryDeadlineCommand command = toSendDeliveryDeadlineCommand(event);
 			autoNotificationService.sendDeliveryDeadline(command);
 		} catch (Exception e) {

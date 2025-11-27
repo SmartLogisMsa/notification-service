@@ -1,5 +1,8 @@
 package com.smartlogis.notificationservice.domain;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.smartlogis.common.domain.AbstractEntity;
 import com.smartlogis.notificationservice.domain.dto.NotificationLogCreate;
 import com.smartlogis.notificationservice.domain.exception.NotificationLogException;
@@ -33,8 +36,12 @@ public class NotificationLog extends AbstractEntity {
 	@Column(nullable = false, length = 20)
 	private NotificationType type;
 
-	@Column(nullable = false)
+	@Column
 	private String channelId;
+
+	@Column
+	@Getter(AccessLevel.NONE)
+	private String slackIds;
 
 	@Column(columnDefinition = "TEXT")
 	private String message;
@@ -48,22 +55,28 @@ public class NotificationLog extends AbstractEntity {
 
 	public static NotificationLog create(NotificationLogCreate request) {
 		validateNotificationType(request.type());
-		validateChannelId(request.channelId());
 		validateNotificationStatus(request.status());
 
-		NotificationLog log = new NotificationLog();
+		NotificationLog notificationLog = new NotificationLog();
 
-		log.type = request.type();
-		log.channelId = request.channelId();
-		log.message = request.message();
-		log.status = request.status();
-		log.errorMessage = request.errorMessage();
+		notificationLog.type = request.type();
+		notificationLog.channelId = request.channelId();
+		notificationLog.message = request.message();
+		notificationLog.status = request.status();
+		notificationLog.errorMessage = request.errorMessage();
 
-		return log;
+		setSlackIds(notificationLog, request.slackIds());
+
+		return notificationLog;
 	}
 
-	public void delete() {
-		throw new NotificationLogException(NotificationLogMessageCode.DELETE_NOT_ALLOWED);
+	public List<String> getSlackIds() {
+		if (this.slackIds == null || this.slackIds.isBlank()) return List.of();
+		return Arrays.stream(this.slackIds.split(",")).map(String::trim).toList();
+	}
+
+	private static void setSlackIds(NotificationLog notificationLog, List<String> slackIds) {
+		notificationLog.slackIds = String.join(",", slackIds);
 	}
 
 	private static void validateNotificationType(NotificationType type) {
@@ -72,15 +85,13 @@ public class NotificationLog extends AbstractEntity {
 		}
 	}
 
-	private static void validateChannelId(String channelId) {
-		if (channelId == null || channelId.isBlank()) {
-			throw new IllegalArgumentException("채널 ID(channelId)는 비어 있을 수 없습니다.");
-		}
-	}
-
 	private static void validateNotificationStatus(NotificationStatus status) {
 		if (status == null) {
 			throw new IllegalArgumentException("알림 상태(notificationStatus)는 비어 있을 수 없습니다.");
 		}
+	}
+
+	public void delete() {
+		throw new NotificationLogException(NotificationLogMessageCode.DELETE_NOT_ALLOWED);
 	}
 }
