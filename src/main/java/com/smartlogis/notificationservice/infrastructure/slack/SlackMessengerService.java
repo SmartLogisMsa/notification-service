@@ -16,7 +16,9 @@ import com.smartlogis.notificationservice.infrastructure.slack.exception.SlackEx
 import com.smartlogis.notificationservice.infrastructure.slack.exception.SlackMessageCode;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @EnableConfigurationProperties({SlackProperties.class})
@@ -30,7 +32,7 @@ public class SlackMessengerService implements MessengerService {
 		try {
 			ResponseEntity<JsonNode> response = client.post()
 				.uri("/conversations.open")
-				.header("Authorization", "Bearer " + properties.token)
+				.header("Authorization", "Bearer " + properties.token())
 				.contentType(MediaType.APPLICATION_JSON)
 				.body(Map.of("users", String.join(",", slackIds)))
 				.retrieve()
@@ -39,6 +41,7 @@ public class SlackMessengerService implements MessengerService {
 			JsonNode body = response.getBody();
 
 			if (!isSuccessful(response)) {
+				log.warn("failed to open direct message. (error={})", String.valueOf(body.get("error")));
 				return MessengerResult.of(null, "FAIL", String.valueOf(body.get("error")));
 			}
 
@@ -54,7 +57,7 @@ public class SlackMessengerService implements MessengerService {
 		try {
 			ResponseEntity<JsonNode> response = client.post()
 				.uri("/chat.postMessage")
-				.header("Authorization", "Bearer " + properties.token)
+				.header("Authorization", "Bearer " + properties.token())
 				.body(Map.of("channel", channelId, "text", message, "as_user", true))
 				.contentType(MediaType.APPLICATION_JSON)
 				.retrieve()
@@ -63,6 +66,7 @@ public class SlackMessengerService implements MessengerService {
 			JsonNode body = response.getBody();
 
 			if (!isSuccessful(response)) {
+				log.warn("failed to send direct message. (error={})", String.valueOf(body.get("error")));
 				return MessengerResult.of(channelId, "FAIL", String.valueOf(body.get("error")));
 			}
 			return MessengerResult.of(channelId, "SUCCESS", null);
