@@ -13,7 +13,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.smartlogis.common.utils.QuerydslSortUtils;
 import com.smartlogis.notificationservice.domain.NotificationLog;
 import com.smartlogis.notificationservice.domain.QNotificationLog;
-import com.smartlogis.notificationservice.domain.dto.NotificationSearch;
+import com.smartlogis.notificationservice.domain.dto.NotificationLogSearch;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +23,7 @@ public class NotificationLogRepositoryCustomImpl implements NotificationLogRepos
 	private final JPAQueryFactory queryFactory;
 
 	@Override
-	public Page<NotificationLog> getNotifications(NotificationSearch search, Pageable pageable) {
+	public Page<NotificationLog> getNotifications(NotificationLogSearch search, Pageable pageable) {
 		QNotificationLog notificationLog = QNotificationLog.notificationLog;
 
 		BooleanBuilder condition = new BooleanBuilder();

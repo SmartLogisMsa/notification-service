@@ -35,6 +35,13 @@ eureka:
 slack:
   token: ${SLACK_USER_TOKEN}
 
+rabbit:
+  bindings:
+    delivery-created:
+      queue: smartlogis.delivery.created.queue
+      exchange: smartlogis.delivery.exchange
+      routing-key: smartlogis.delivery.created
+
 springdoc:
   version: '1.0.0'
   api-docs:

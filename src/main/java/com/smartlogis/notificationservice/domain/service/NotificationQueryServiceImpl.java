@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.smartlogis.notificationservice.domain.NotificationLog;
-import com.smartlogis.notificationservice.domain.dto.NotificationSearch;
+import com.smartlogis.notificationservice.domain.dto.NotificationLogSearch;
 import com.smartlogis.notificationservice.domain.exception.NotificationLogException;
 import com.smartlogis.notificationservice.domain.exception.NotificationLogMessageCode;
 import com.smartlogis.notificationservice.domain.repository.NotificationLogRepository;
@@ -27,7 +27,7 @@ public class NotificationQueryServiceImpl implements NotificationQueryService {
 	}
 
 	@Override
-	public Page<NotificationLog> getNotificationLogs(NotificationSearch search, Pageable pageable) {
+	public Page<NotificationLog> getNotificationLogs(NotificationLogSearch search, Pageable pageable) {
 		return repository.getNotifications(search, pageable);
 	}
 }
